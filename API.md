@@ -41,6 +41,10 @@ Response (200):
   "mensagem": "Tarefa concluida"
 }
 
+Response (404):
+{ 
+  "detail": "Tarefa não encontrada"
+}
 ---
 
 ## DELETE /tarefas/{id}
@@ -52,10 +56,15 @@ Response (200):
   "mensagem": "Tarefa Deletada"
 }
 
+Response (404):
+{ 
+  "detail": "Tarefa não encontrada"
+}
 ---
 
 ## Códigos de status
 
 - 200: Sucesso  
-- 400: Erro de requisição  
+- 400: Erro de requisição 
+- 404: Recurso não encontrado
 - 500: Erro interno

@@ -1,5 +1,4 @@
-from fastapi import FastAPI
-
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
 from src.banco import criar_tabela, get_connection
@@ -27,15 +26,19 @@ def lista_tarefa():
 @app.put("/tarefas/{id}")
 def concluida(id: int):
     conn = get_connection()
-    conn.execute("UPDATE Tarefas SET CONCLUIDA = 1 WHERE ID = ?", (id,))
+    cursor = conn.execute("UPDATE Tarefas SET CONCLUIDA = 1 WHERE ID = ?", (id,))
     conn.commit()
     conn.close()
+    if cursor.rowcount == 0:
+        raise HTTPException(status_code=404, detail="Tarefa não encontrada")
     return {"mensagem": "Tarefa concluida"}
 
 @app.delete("/tarefas/{id}")
 def deletar(id: int):
     conn = get_connection()
-    conn.execute("DELETE FROM Tarefas WHERE ID = ?", (id,))
+    cursor = conn.execute("DELETE FROM Tarefas WHERE ID = ?", (id,))
     conn.commit()
     conn.close()
+    if cursor.rowcount == 0:
+        raise HTTPException(status_code=404, detail="Tarefa não encontrada")
     return {"mensagem": "Tarefa Deletada"}
