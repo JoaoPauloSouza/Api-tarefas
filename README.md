@@ -19,3 +19,7 @@ No terminal, dentro da pasta do projeto, execute:
 
 ```bash
 docker compose up --build
+
+Após rodar, acesse a documentação da API em:
+
+http://127.0.0.1:8000/docs
