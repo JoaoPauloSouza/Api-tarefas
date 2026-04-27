@@ -8,10 +8,10 @@ def get_connection():
 def criar_tabela():
     conn = get_connection()
     conn.execute("""
-                 CREATE TABLE IF NOT EXISTS Tarefas(
-                 ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                 TITULO TEXT NOT NULL,
-                 CONCLUIDA INTEGER DEFAULT 0)
+                 CREATE TABLE IF NOT EXISTS tarefas(
+                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                 titulo TEXT NOT NULL,
+                 concluida INTEGER DEFAULT 0)
                  """)
 
     conn.commit()
