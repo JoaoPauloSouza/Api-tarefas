@@ -15,6 +15,11 @@ Response (200):
   "concluida": false
 }
 
+Response (422):
+{
+  "detail": "campo titulo é obrigatório"
+}
+
 ---
 
 ## GET /tarefas
@@ -24,9 +29,9 @@ Descrição: Lista todas as tarefas
 Response (200):
 [
   {
-    "ID": 1,
-    "TITULO": "Estudar Python",
-    "CONCLUIDA": 0
+    "id": 1,
+    "titulo": "Estudar Python",
+    "concluida": 0
   }
 ]
 
@@ -45,6 +50,7 @@ Response (404):
 { 
   "detail": "Tarefa não encontrada"
 }
+
 ---
 
 ## DELETE /tarefas/{id}
@@ -60,6 +66,7 @@ Response (404):
 { 
   "detail": "Tarefa não encontrada"
 }
+
 ---
 
 ## Códigos de status
@@ -67,4 +74,5 @@ Response (404):
 - 200: Sucesso  
 - 400: Erro de requisição 
 - 404: Recurso não encontrado
+- 422: Erro de validação  
 - 500: Erro interno

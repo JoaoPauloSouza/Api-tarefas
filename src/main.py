@@ -8,7 +8,7 @@ criar_tabela()
 
 class Tarefa(BaseModel):
     titulo: str
-@app.post("/tarefas", status_code=201)
+@app.post("/tarefas")
 def criar_tarefa(dados: Tarefa):
     conn = get_connection()
     conn.execute("INSERT INTO tarefas (titulo) VALUES (?)", (dados.titulo,))
